@@ -25,7 +25,7 @@ void newBookEntry()
     printf("\n************************************");
 
     //values to ask
-    char bookName[100], authorName[20], language[10], date[10];
+    char bookName[20], authorName[20], language[10], date[10];
     char finalInputValue[200];
 
     //ERROR : program skips the first fgets automatically
@@ -76,6 +76,14 @@ void newBookEntry()
     }
 }
 
+void endCell(int total)
+{
+    int count;
+    count = 20 - total;
+    for (int i = 0; i < count; i++)
+        printf(" ");
+}
+
 void displayBooks()
 {
     printf("\n************************************");
@@ -98,7 +106,23 @@ void displayBooks()
 
         while (fgets(readLine, 1000, filePointer) != NULL)
         {
-            printf("\t%s", readLine);
+            int wordCount = 0;
+            // printf("\t%s", readLine);
+            printf("\t");
+
+            for (int i = 0; i < strlen(readLine); i++)
+            {
+                if (readLine[i] == ',')
+                {
+                    endCell(wordCount);
+                    wordCount = 0;
+                }
+                else
+                {
+                    wordCount++;
+                    printf("%c", readLine[i]);
+                }
+            }
         }
 
         //close the file
