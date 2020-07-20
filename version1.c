@@ -222,6 +222,25 @@ void deleteBook()
     printf("\n\nSuccessfully Deleted.\n\n");
 }
 
+// function to create backup
+void createBackUp()
+{
+    printf("\n************************************");
+
+    FILE *filePointer;
+
+    //ERROR : program skips the first fgets automatically
+    char s[2];
+    fgets(s, sizeof(s), stdin);
+
+    //clear the console
+    printf("\e[1;1H\e[2J");
+
+    copyFiles("BookData.csv", "Backup.csv");
+
+    printf("\n\nBackup successfull.\n\n");
+}
+
 int main()
 {
     char choice;
@@ -253,13 +272,14 @@ int main()
         printf("\n 1. Enter a new book.");
         printf("\n 2. Delete an existing book.");
         printf("\n 3. Display all books.");
-        printf("\n 4. Exit. \n \t : ");
+        printf("\n 4. Create a backup file.");
+        printf("\n 5. Exit. \n \t : ");
 
         //take input and process.
         scanf(" %c", &choice);
 
         //check if the user wants to QUIT
-        if (choice == '4')
+        if (choice == '5')
             break;
 
         //switch cases to operate all funtions conditionally
@@ -277,6 +297,10 @@ int main()
         case '3':
             printf("\n Option 3 selected.");
             displayBooks();
+            break;
+        case '4':
+            printf("\n Option 4 selected.");
+            createBackUp();
             break;
 
         default:
