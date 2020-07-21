@@ -71,8 +71,10 @@ int main()
         if(temp_status == 22)
         {
             isLoggedin = 1;
+            printf("\n\nACCESS GRANTED\n\n");
+            sleep(2);
             printf("\e[1;1H\e[2J");
-            printf("ACCESS GRANTED\n\n");
+            printf(" _      _ _                          __  __                                                   _    _____           _\n");
             printf("| |    (_) |                        |  \\/  |                                                 | |  / ____|         | |\n");
             printf("| |     _| |__  _ __ __ _ _ __ _   _| \\  / | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_| (___  _   _ ___| |_ ___ _ __ ___  \n");
             printf("| |    | | '_ \\| '__/ _` | '__| | | | |\\/| |/ _` | '_ \\ / _` |/ _` |/ _ \\ '_ ` _ \\ / _ \\ '_ \\| __|\\___ \\| | | / __| __/ _ \\ '_ ` _ \\ \n");
@@ -372,9 +374,6 @@ void newBookEntry()
     fgets(language, sizeof(language), stdin);
     printf("\n\tEnter the date (DD/MM/YYYY) : ");
     fgets(date, sizeof(date), stdin);
-
-    //clear input buffer
-    fflush(stdin);
 
     newEntry(concatString(bookName, authorName, language, date));
 }
