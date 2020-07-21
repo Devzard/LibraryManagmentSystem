@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 //Using in Login amd Register
 struct person
@@ -67,7 +68,25 @@ int main()
     {
         //Login Required
         temp_status = login_prompt();
-        isLoggedin = (temp_status == 22) ? 1 : 0;
+        if(temp_status == 22)
+        {
+            isLoggedin = 1;
+            printf("\e[1;1H\e[2J");
+            printf("ACCESS GRANTED\n\n");
+            printf("| |    (_) |                        |  \\/  |                                                 | |  / ____|         | |\n");
+            printf("| |     _| |__  _ __ __ _ _ __ _   _| \\  / | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_| (___  _   _ ___| |_ ___ _ __ ___  \n");
+            printf("| |    | | '_ \\| '__/ _` | '__| | | | |\\/| |/ _` | '_ \\ / _` |/ _` |/ _ \\ '_ ` _ \\ / _ \\ '_ \\| __|\\___ \\| | | / __| __/ _ \\ '_ ` _ \\ \n");
+            printf("| |____| | |_) | | | (_| | |  | |_| | |  | | (_| | | | | (_| | (_| |  __/ | | | | |  __/ | | | |_ ____) | |_| \\__ \\ ||  __/ | | | | |\n");
+            printf("|______|_|_.__/|_|  \\__,_|_|   \\__, |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_| |_| |_|\\___|_| |_|\\__|_____/ \\__, |___/\\__\\___|_| |_| |_|\n");
+            printf("                                __/ |                          __/ |                                      __/ | \n");
+            printf("                               |___/                          |___/                                      |___/   \n\n");
+
+        }
+        else
+        {
+            printf("ACCESS DENIED");
+        }
+        
     }
 
     //create a file if it doesn't exists
@@ -225,6 +244,7 @@ int signin(char *uname, char *pass)
 int login_prompt()
 {
     char uname[12], pass[12];
+    printf("\e[1;1H\e[2J");
     printf("     __          __  _                            ____             _     \n");
     printf("     \\ \\        / / | |                          |  _ \\           | |    \n");
     printf("      \\ \\  /\\  / /__| | ___ ___  _ __ ___   ___  | |_) | __ _  ___| | __ \n");
@@ -244,7 +264,7 @@ int login_prompt()
 int register_prompt()
 {
     char uname[12], pass[12], confirm_pass[12];
-
+    printf("\e[1;1H\e[2J");
     printf(" _      _ _                          __  __                                                   _    _____           _\n");
     printf("| |    (_) |                        |  \\/  |                                                 | |  / ____|         | |\n");
     printf("| |     _| |__  _ __ __ _ _ __ _   _| \\  / | __ _ _ __   __ _  __ _  ___ _ __ ___   ___ _ __ | |_| (___  _   _ ___| |_ ___ _ __ ___  \n");
@@ -254,8 +274,8 @@ int register_prompt()
     printf("                                __/ |                          __/ |                                      __/ | \n");
     printf("                               |___/                          |___/                                      |___/   \n\n");
 
-    printf("°º¤ø,¸¸,ø¤º°`°º¤ø,¸,ø¤°º¤ø,¸¸,ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø,¸,ø¤°º¤ø,¸¸,ø¤º°`°º¤ø,¸\n\n");
-    printf("Welcome to the project 'LIBRARY MANAGEMENT SYSTEM'");
+    printf("°º¤ø,¸¸,ø¤º°`°º¤ø,¸,ø¤°º¤ø,¸¸,ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø,¸,ø¤°º¤ø,¸¸,ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø,¸¸,ø¤º°`°º¤ø,¸,ø¤°º¤ø,¸¸,ø¤º°`°º¤ø,¸\n\n");
+    printf("Welcome to the project 'LIBRARY MANAGEMENT SYSTEM'\n");
     printf("Created by: Debashish Gogoi (190710007017) and Rishparn Gogoi (190710007045).");
     printf("\n\nCreate new account \n\n");
     while (1)
@@ -356,8 +376,6 @@ void newBookEntry()
     //clear input buffer
     fflush(stdin);
 
-    printf("%s", concatString(bookName, authorName, language, date));
-
     newEntry(concatString(bookName, authorName, language, date));
 }
 
@@ -388,8 +406,6 @@ void displayBooks()
         printf("\n\n***File not present.***\n");
     else
     {
-        printf("\n\n***File opened.***\n\n");
-
         while (fgets(readLine, 1000, filePointer) != NULL)
         {
             int wordCount = 0;
@@ -471,9 +487,6 @@ void deleteBook()
         exit(0);
     }
 
-    //clear the console
-    printf("\e[1;1H\e[2J");
-
     if (filePointer == NULL)
         printf("\n\n***File not present.***\n");
     else
@@ -501,6 +514,7 @@ void deleteBook()
         printf("\n***Something went wrong***\n");
 
     printf("\n\nSuccessfully Deleted.\n\n");
+    sleep(1);
 }
 
 // function to create backup
@@ -509,10 +523,6 @@ void createBackUp()
     printf("\n************************************");
 
     FILE *filePointer;
-
-    //ERROR : program skips the first fgets automatically
-    char s[2];
-    fgets(s, sizeof(s), stdin);
 
     //clear the console
     printf("\e[1;1H\e[2J");
