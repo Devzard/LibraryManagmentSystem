@@ -18,6 +18,9 @@
 //  Date: 12/12/1212
 //
 //  Github: https://github.com/Devzard/LibraryManagmentSystem
+//
+//  Build Successful on gcc 9.3.0
+//  Tested on Ubuntu 18.04 and Kubuntu 20.04
 
 #include <stdio.h>
 #include <string.h>
