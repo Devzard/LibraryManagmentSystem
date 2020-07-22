@@ -19,7 +19,16 @@
 //
 //  Github: https://github.com/Devzard/LibraryManagmentSystem
 //
-//  Build Successful on gcc 9.3.0
+//  Build Successful on gcc 9.3.0 and g++ 9.3.0
+//
+//  Windows
+//  Build command for gcc : gcc -o a.exe .\library-management-system.c
+//  Build command for g++ : g++ -g -fpermissive -o a.exe .\library-management-system.c
+//
+//  Linux/unix
+//  Build command for gcc : gcc -o a.out .\library-management-system.c
+//  Build command for g++ : g++ -g -fpermissive -o a.out .\library-management-system.c
+//
 //  Tested on Ubuntu 18.04 and Kubuntu 20.04
 
 #include <stdio.h>
